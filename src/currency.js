@@ -1,7 +1,7 @@
 export default class ExchangeRate {
   static getExchangeRate() {
     return new Promise(function(resolve, reject) {
-      const cachedExchange = JSON.parse(localStorage.getItem('exchangeRate'));
+      const cachedExchange = JSON.parse(sessionStorage.getItem('exchangeRate'));
       if (cachedExchange) {
         resolve(cachedExchange);
         return;
@@ -12,7 +12,7 @@ export default class ExchangeRate {
       request.addEventListener("load", function() {
         if (this.status === 200) {
           const exchange = JSON.parse(this.responseText);
-          localStorage.setItem('exchangeRate', JSON.stringify(exchange));
+          sessionStorage.setItem('exchangeRate', JSON.stringify(exchange));
           resolve(exchange);
         } else {
           reject(new Error(`Request failed with status ${this.status}`));
