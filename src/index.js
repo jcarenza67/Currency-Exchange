@@ -4,11 +4,17 @@ import './css/styles.css';
 import ExchangeRate from './currency.js';
 
 function getExchangeRate(response) {
-  return ExchangeRate.getExchangeRate(response).then(function(response) {
-    if (response.result === "success") {
-      return response.conversion_rates;
-    } else {
-      throw Error(response.result);
-    }
+  let promise = ExchangeRate.getExchangeRate(response);
+  promise.then(function(exchangeInfo) {
+    displayRate(exchangeInfo);
+  }, function(errorArray) {
+    printError(errorArray); 
   });
+}
+
+function displayRate(response, amount, targetCurrency) {
+  const exchangeRate = response[targetCurrency];
+  const conversion = amount * exchangeRate;
+  const conversionString = conversion.toFixed(2);
+  return conversionString;
 }
