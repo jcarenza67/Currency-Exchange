@@ -1,42 +1,38 @@
 export default class ExchangeRate {
-  static getExchangeRate() {
-    return new Promise(function(resolve, reject) {
-      const cachedExchange = JSON.parse(sessionStorage.getItem('exchangeRate'));
-      if (cachedExchange) {
-        resolve(cachedExchange);
-        return;
-      }
+  static async getExchangeRate() {
+    const cachedExchange = JSON.parse(sessionStorage.getItem('exchangeRate'));
+    if (cachedExchange) {
+      return cachedExchange;
+    }
 
-      let request = new XMLHttpRequest();
-      const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
-      request.addEventListener("load", function() {
-        if (this.status === 200) {
-          const exchange = JSON.parse(this.responseText);
-          sessionStorage.setItem('exchangeRate', JSON.stringify(exchange));
-          resolve(exchange);
-        } else {
-          reject(new Error(`Request failed with status ${this.status}`));
-        }
-      });
-      request.open("GET", url, true);
-      request.send();
-    });
+    const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const exchange = await response.json();
+    sessionStorage.setItem('exchangeRate', JSON.stringify(exchange));
+    return exchange;
   }
 
-  static getCurrencies() {
-    return new Promise(function(resolve, reject) {
-      let request = new XMLHttpRequest();
-      const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`;
-      request.addEventListener("load", function() {
-        if (this.status === 200) {
-          const currencies = JSON.parse(this.responseText).supported_codes.map(code => ({ code: code[0], name: code[1] }));
-          resolve(currencies);
-        } else {
-          reject(new Error(`Request failed with status ${this.status}`));
-        }
-      });
-      request.open("GET", url, true);
-      request.send();
-    });
+
+  static async getCurrencies() {
+    const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`;
+
+    try{
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+
+      const data = await response.json();
+      const currencies = data.supported_codes.map(code => ({ code: code[0], name: code[1] }));
+      return currencies;
+    } catch(error) {
+      throw new Error(`${error.message}`);
+    }
   }
 }
