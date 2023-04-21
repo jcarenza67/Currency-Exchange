@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Currency Converter</title>
+</head>
+<body>
+  <h1>Currency Converter</h1>
+  <form action="convert.php" method="post">
+    <label for="amount">Amount in U.S. Dollars:</label>
+    <input type="number" step="0.01" min="0" name="amount" id="amount" required>
+    <label for="currency">Convert to:</label>
+    <select name="currency" id="currency" required>
+      <option value="">--Select Currency--</option>
+      <option value="EUR">Euro</option>
+      <option value="JPY">Japanese Yen</option>
+      <option value="GBP">British Pound</option>
+      <option value="CAD">Canadian Dollar</option>
+      <option value="AUD">Australian Dollar</option>
+      <option value="CHF">Swiss Franc</option>
+      <option value="CNY">Chinese Yuan</option>
+      <option value="NZD">New Zealand Dollar</option>
+    </select>
+    <input type="submit" value="Convert">
+  </form>
+</body>
+</html>
