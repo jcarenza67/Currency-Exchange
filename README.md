@@ -32,20 +32,20 @@ _A currency exchange application that allows users to convert between different 
 * _Click the link provided above_
 * _Click the green dropdown button that says "Code"_
 * _Copy the repository HTTPS, clone it to your Desktop directory by typing ***git clone***, paste the copied URL right after **clone**, and then press enter_
-* _Add the following files to your .gitignore file: 
+* _Make sure the following files are in your .gitignore file: 
 ***node_modules/***
 ***.DS_Store***
 ***dist/***
 ***coverage/***
-***.env_***
+***.env***_
 * _Then ***git push -u origin main*** the .gitignore file separately to your repository_
 * _Create a .env file in the root directory of the project_
 * _Go to [this website](https://www.exchangerate-api.com/) and sign up for a free API key_
 * _In the .env file, add the following code: API_KEY=[YOUR_API_KEY_GOES_HERE]_
-* _Before doing anything else, make sure you have Node.js installed on your computer. If you do not, you can download it [here](https://nodejs.org/en/download/)_
+* _Before doing anything else, make sure you have ***Node.js*** installed on your computer. If you do not, you can download it [here](https://nodejs.org/en/download/)_
 * _Install all packages with ***npm install***._
-* _After you have installed all packages, make sure you have dotenv installed (in your package.json under devDependencies). If you do not, you can install it by typing ***npm install dotenv-webpack***_
-* _Your webpack.config.js file should look like this:_
+* _After you have installed all packages, make sure you have dotenv installed (in your ***package.json*** under devDependencies). If you do not, you can install it with ***npm install dotenv-webpack***_
+* _Your ***webpack.config.js*** file should look like this:_
 ```
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -86,7 +86,7 @@ module.exports = {
   }
 };
 ```
-* _Then when you are setting up the url for your API call, your code should look something like this:_
+* _Then when you are setting up the ***url*** for your ***API*** call, your code should look something like this:_
   
   ```
   const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
