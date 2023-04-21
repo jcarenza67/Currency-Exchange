@@ -1,6 +1,6 @@
-# (Name of project)
+# (Currency Exchange)
 
-#### (Brief description)
+#### (Currency exhange rate application.)
 
 #### By (Joseph Wilfong)
 
@@ -15,15 +15,16 @@
 * _CSS_
 * _JavaScript_
 * _Jest_
+* _API's_
 
 
 ## Description
 
-_  _
+_A currency exchange application that allows users to convert between different currencies._
 
 ## Links
 
-[This is the link to the Github repository](. ) 
+[This is the link to the Github repository](https://github.com/jcarenza67/Currency-Exchange) 
 
 
 ## Setup/Installation Requirements
@@ -40,7 +41,7 @@ _  _
 
 ## Known Bugs
 
-* _ _
+* _none_
 
 ## License
 
