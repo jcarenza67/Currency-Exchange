@@ -17,14 +17,14 @@ function displayRate(amount, exchange, currency) {
 
 const currencyDropdown = document.querySelector('#currency');
 
-ExchangeRate.getCurrencies().then(function(currencies) {
-  currencies.forEach(function(currency) {
+ExchangeRate.getCurrencies().then(currencies => {
+  currencies.forEach(currency => {
     const option = document.createElement('option');
     option.value = currency.code;
     option.text = `${currency.code} - ${currency.name}`;
     currencyDropdown.add(option);
   });
-}).catch(function(error) {
+}).catch(error => {
   const message = `There was an error: ${error.message}`;
   document.querySelector('#result').innerHTML = message;
 });
@@ -44,7 +44,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
       const conversionString = displayRate(amount, exchange, currency);
       const message = `Your $${amount} USD is worth ${conversionString}`;
       document.querySelector('#result').innerHTML = message;
-    }).catch(function(error) {
+    }).catch(error => {
       const message = `There was an error: ${error.message}`;
       document.querySelector('#result').innerHTML = message;
     });
