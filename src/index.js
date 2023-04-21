@@ -29,7 +29,7 @@ ExchangeRate.getCurrencies().then(currencies => {
   document.querySelector('#result').innerHTML = message;
 });
 
-document.querySelector('form').addEventListener('submit', function(event) {
+document.querySelector('form').addEventListener('submit', async event => {
   event.preventDefault();
   const amount = parseFloat(document.querySelector('#amount').value);
   const currency = document.querySelector('#currency').value;
@@ -39,14 +39,15 @@ document.querySelector('form').addEventListener('submit', function(event) {
     const message = `Your $${amount} USD is worth ${conversionString}`;
     document.querySelector('#result').innerHTML = message;
   } else {
-    ExchangeRate.getExchangeRate().then(function(exchange) {
+    try {
+      const exchange = await ExchangeRate.getExchangeRate();
       sessionStorage.setItem('exchangeRate', JSON.stringify(exchange));
       const conversionString = displayRate(amount, exchange, currency);
       const message = `Your $${amount} USD is worth ${conversionString}`;
       document.querySelector('#result').innerHTML = message;
-    }).catch(error => {
+    } catch(error) {
       const message = `There was an error: ${error.message}`;
       document.querySelector('#result').innerHTML = message;
-    });
+    }
   }
 });
