@@ -1,4 +1,4 @@
-export default class Currency {
+export default class ExchangeRate {
   static getExchangeRate() {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
@@ -14,7 +14,6 @@ export default class Currency {
       });
       request.open("GET", url, true);
       request.send();
-            
     });
   }
 }
