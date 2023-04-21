@@ -4,16 +4,18 @@
   <title>Currency Converter</title>
 </head>
 <body>
-  <h1>Currency Converter</h1>
-  <form id="converter-form">
-    <label for="amount">Amount in U.S. Dollars:</label>
-    <input type="number" step="0.01" min="0" name="amount" id="amount" required>
-    <label for="currency">Convert to:</label>
-    <select name="currency" id="currency" required>
-      <option value="" selected disabled>--Select Currency--</option>
-    </select>
-    <input type="submit" value="Convert">
-  </form>
+  <div class="container">
+    <h1>Currency Converter</h1>
+    <form id="converter-form">
+      <label for="amount">Amount in U.S. Dollars:</label>
+      <input type="number" step="0.01" min="0" name="amount" id="amount" required>
+      <label for="currency">Convert to:</label>
+      <select name="currency" id="currency" required>
+        <option value="" selected disabled>--Select Currency--</option>
+      </select>
+      <input type="submit" value="Convert">
+    </form>
   <p id="result"></p>
+  </div>
 </body>
 </html>
