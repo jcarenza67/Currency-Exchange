@@ -29,11 +29,8 @@ export default class ExchangeRate {
       const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`;
       request.addEventListener("load", function() {
         if (this.status === 200) {
-          const currencies = JSON.parse(this.responseText).supported_codes;
-          const currencyObjects = currencies.map(function(code) {
-            return { code: code, name: code };
-          });
-          resolve(currencyObjects);
+          const currencies = JSON.parse(this.responseText).supported_codes.map(code => ({ code: code[0], name: code[1] }));
+          resolve(currencies);
         } else {
           reject(new Error(`Request failed with status ${this.status}`));
         }
