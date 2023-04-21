@@ -7,10 +7,27 @@ let cachedExchange = null;
 
 function displayRate(amount, exchange, currency) {
   const exchangeRate = exchange.conversion_rates[currency];
+  if (!exchangeRate) {
+    throw new Error(`The currency ${currency} is not supported`);
+  }
   const conversion = amount * exchangeRate;
   const conversionString = conversion.toLocaleString('en-US', { style: 'currency', currency: currency });
   return conversionString;
 }
+
+const currencyDropdown = document.querySelector('#currency');
+
+ExchangeRate.getCurrencies().then(function(currencies) {
+  currencies.forEach(function(currency) {
+    const option = document.createElement('option');
+    option.value = currency.code;
+    option.text = `${currency.code} - ${currency.name}`;
+    currencyDropdown.add(option);
+  });
+}).catch(function(error) {
+  const message = `There was an error: ${error.message}`;
+  document.querySelector('#result').innerHTML = message;
+});
 
 document.querySelector('form').addEventListener('submit', function(event) {
   event.preventDefault();
