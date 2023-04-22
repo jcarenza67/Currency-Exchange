@@ -16,6 +16,8 @@
 * _JavaScript_
 * _Jest_
 * _API's_
+* _Bootstrap_
+
 
 
 ## Description

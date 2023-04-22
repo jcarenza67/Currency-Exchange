@@ -42,6 +42,7 @@ document.querySelector('form').addEventListener('submit', async event => {
     try {
       const exchange = await ExchangeRate.getExchangeRate();
       sessionStorage.setItem('exchangeRate', JSON.stringify(exchange));
+      cachedExchange = exchange;
       const conversionString = displayRate(amount, exchange, currency);
       const message = `Your $${amount} USD is worth ${conversionString}`;
       document.querySelector('#result').innerHTML = message;
