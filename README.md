@@ -40,7 +40,7 @@ _A currency exchange application that allows users to convert between different 
 ***dist/***
 ***coverage/***
 ***.env***_
-* _Then ***git push -u origin main*** the .gitignore file separately to your repository_
+* _Then ***git add/push*** the .gitignore file ***separately*** to your repository_
 * _Create a .env file in the root directory of the project_
 * _Go to [this website](https://www.exchangerate-api.com/) and sign up for a free API key_
 * _In the .env file, add the following code: API_KEY=[YOUR_API_KEY_GOES_HERE]_
