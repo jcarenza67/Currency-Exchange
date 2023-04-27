@@ -47,52 +47,6 @@ _A currency exchange application that allows users to convert between different 
 * _Before doing anything else, make sure you have ***Node.js*** installed on your computer. If you do not, you can download it [here](https://nodejs.org/en/download/)_
 * _Install all packages with ***npm install***._
 * _After you have installed all packages, make sure you have dotenv installed (in your ***package.json*** under devDependencies). If you do not, you can install it with ***npm install dotenv-webpack***_
-* _Your ***webpack.config.js*** file should look like this:_
-```
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  },
-  devtool: 'eval-source-map',
-  devServer: {               
-    contentBase: './dist'    
-  },
-  plugins: [
-    new Dotenv(),
-    new ESLintPlugin(),
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Shape Tracker',
-      template: './src/index.html',
-      inject: 'body'
-    })
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
-  }
-};
-```
-* _Then when you are setting up the ***url*** for your ***API*** call, your code should look something like this:_
-  
-  ```
-  const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
-  ```
 * _Build the project using webpack with ***npm run build***_
 * _Start a development server with ***npm run start***_
 * _Lint JS files in the src folder with ***npm run lint***_
